@@ -60,7 +60,7 @@ jobs:
                   key: ${{ github.sha }}
             - run: >-
                   echo .git > .dockerignore
-                  if [ ${{ github.tag }} ]; then
+                  if [ "${{ github.tag }}" ]; then
                     export TAG=${{ github.tag }}
                     export CHANNEL=$(git branch --contains ${{ github.tag }} --format='%(refname:short)')
                     if [ $CHANNEL = master ]; then

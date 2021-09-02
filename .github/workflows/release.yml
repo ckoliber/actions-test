@@ -61,20 +61,20 @@ jobs:
             - run: |
                   echo .git > .dockerignore
                   if [ ${{ github.tag }} ]; then
-                    export CI_TAG=${{ github.tag }}
-                    export CI_CHANNEL=$(git branch --contains ${{ github.tag }} --format='%(refname:short)')
-                    if [ $CI_CHANNEL = master ]; then
-                        export CI_CHANNEL=latest
-                    elif [ $CI_CHANNEL = beta ]; then
-                        export CI_CHANNEL=beta
-                    elif [ $CI_CHANNEL = alpha ]; then
-                        export CI_CHANNEL=alpha
+                    export TAG=${{ github.tag }}
+                    export CHANNEL=$(git branch --contains ${{ github.tag }} --format='%(refname:short)')
+                    if [ $CHANNEL = master ]; then
+                        export CHANNEL=latest
+                    elif [ $CHANNEL = beta ]; then
+                        export CHANNEL=beta
+                    elif [ $CHANNEL = alpha ]; then
+                        export CHANNEL=alpha
                     else
-                        export CI_CHANNEL=${{ github.tag }}
+                        export CHANNEL=${{ github.tag }}
                     fi
                   else
-                    export CI_TAG=${{ github.sha }}
-                    export CI_CHANNEL=${{ github.sha }}
+                    export TAG=${{ github.sha }}
+                    export CHANNEL=${{ github.sha }}
                   fi
 
             - uses: docker/login-action@v1
@@ -86,7 +86,7 @@ jobs:
               with:
                   push: true
                   file: .github/Dockerfile
-                  tags: ghcr.io/${{ github.repository }}:$CI_TAG,ghcr.io/${{ github.repository }}:$CI_CHANNEL
+                  tags: ghcr.io/${{ github.repository }}:${{ env.TAG }},ghcr.io/${{ github.repository }}:${{ env.CHANNEL }}
 
     deploy:
         needs: release
@@ -96,18 +96,15 @@ jobs:
             docker:
                 image: docker:dind
                 options: --tls=false
-        env:
-            CI_COMMIT_TAG: ${CI_COMMIT_TAG:-${CI_MERGE_REQUEST_ID:-"latest"}}
-            CI_MERGE_REQUEST_ID: ${{ github.event.pull_request.number }}
         steps:
             - uses: actions/checkout@v2
             - uses: hashicorp/setup-terraform@v1
             - run: |
                   cp .gitlab/terraform.tf .
                   if [ ${{ github.tag }} ]; then
-                    export CI_TAG=latest
+                    export TAG=latest
                   else
-                    export CI_TAG=${{ github.sha }}
+                    export TAG=${{ github.sha }}
                   fi
 
             - run: terraform init

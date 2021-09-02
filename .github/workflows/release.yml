@@ -58,7 +58,7 @@ jobs:
               with:
                   path: dist/
                   key: ${{ github.sha }}
-            - run: >-
+            - run: |-
                   echo .git > .dockerignore
                   if [ "${{ github.tag }}" ]; then
                     export TAG=${{ github.tag }}

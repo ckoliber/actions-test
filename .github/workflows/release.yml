@@ -17,6 +17,10 @@ on:
             - alpha
 
 jobs:
+    tester:
+        runs-on: ubuntu-latest
+        steps:
+            - run: printenv
     build:
         runs-on: ubuntu-latest
         container: node:alpine

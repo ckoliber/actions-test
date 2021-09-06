@@ -49,66 +49,66 @@ jobs:
 
             - run: echo Test
 
-    release:
-        needs: test
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
-            - uses: actions/cache@v2
-              with:
-                  path: dist/
-                  key: ${{ github.sha }}
-            - run: |-
-                  echo .git > .dockerignore
-                  if [ "${{ github.tag }}" ]; then
-                    export TAG=${{ github.tag }}
-                    export CHANNEL=$(git branch --contains ${{ github.tag }} --format='%(refname:short)')
-                    if [ $CHANNEL = master ]; then
-                        export CHANNEL=latest
-                    elif [ $CHANNEL = beta ]; then
-                        export CHANNEL=beta
-                    elif [ $CHANNEL = alpha ]; then
-                        export CHANNEL=alpha
-                    else
-                        export CHANNEL=${{ github.tag }}
-                    fi
-                  else
-                    export TAG=${{ github.sha }}
-                    export CHANNEL=${{ github.sha }}
-                  fi
+    # release:
+    #     needs: test
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #         - uses: actions/checkout@v2
+    #         - uses: actions/cache@v2
+    #           with:
+    #               path: dist/
+    #               key: ${{ github.sha }}
+    #         - run: |-
+    #               echo .git > .dockerignore
+    #               if [ "${{ github.tag }}" ]; then
+    #                 export TAG=${{ github.tag }}
+    #                 export CHANNEL=$(git branch --contains ${{ github.tag }} --format='%(refname:short)')
+    #                 if [ $CHANNEL = master ]; then
+    #                     export CHANNEL=latest
+    #                 elif [ $CHANNEL = beta ]; then
+    #                     export CHANNEL=beta
+    #                 elif [ $CHANNEL = alpha ]; then
+    #                     export CHANNEL=alpha
+    #                 else
+    #                     export CHANNEL=${{ github.tag }}
+    #                 fi
+    #               else
+    #                 export TAG=${{ github.sha }}
+    #                 export CHANNEL=${{ github.sha }}
+    #               fi
 
-            - run: echo $TAG
-            - run: echo $CHANNEL
+    #         - run: echo $TAG
+    #         - run: echo $CHANNEL
 
-            - uses: docker/login-action@v1
-              with:
-                  registry: ghcr.io
-                  username: ${{ github.actor }}
-                  password: ${{ secrets.GITHUB_TOKEN }}
-            - uses: docker/build-push-action@v2
-              with:
-                  push: true
-                  file: .github/Dockerfile
-                  tags: ghcr.io/${{ github.repository }}:${{ env.TAG }},ghcr.io/${{ github.repository }}:${{ env.CHANNEL }}
+    #         - uses: docker/login-action@v1
+    #           with:
+    #               registry: ghcr.io
+    #               username: ${{ github.actor }}
+    #               password: ${{ secrets.GITHUB_TOKEN }}
+    #         - uses: docker/build-push-action@v2
+    #           with:
+    #               push: true
+    #               file: .github/Dockerfile
+    #               tags: ghcr.io/${{ github.repository }}:${{ env.TAG }},ghcr.io/${{ github.repository }}:${{ env.CHANNEL }}
 
-    deploy:
-        needs: release
-        runs-on: ubuntu-latest
-        container: hashicorp/terraform
-        services:
-            docker:
-                image: docker:dind
-                options: --tls=false
-        steps:
-            - uses: actions/checkout@v2
-            - uses: hashicorp/setup-terraform@v1
-            - run: |
-                  cp .gitlab/terraform.tf .
-                  if [ ${{ github.tag }} ]; then
-                    export TAG=latest
-                  else
-                    export TAG=${{ github.sha }}
-                  fi
+    # deploy:
+    #     needs: release
+    #     runs-on: ubuntu-latest
+    #     container: hashicorp/terraform
+    #     services:
+    #         docker:
+    #             image: docker:dind
+    #             options: --tls=false
+    #     steps:
+    #         - uses: actions/checkout@v2
+    #         - uses: hashicorp/setup-terraform@v1
+    #         - run: |
+    #               cp .gitlab/terraform.tf .
+    #               if [ ${{ github.tag }} ]; then
+    #                 export TAG=latest
+    #               else
+    #                 export TAG=${{ github.sha }}
+    #               fi
 
-            - run: terraform init
-            - run: terraform apply -auto-approve
+    #         - run: terraform init
+    #         - run: terraform apply -auto-approve

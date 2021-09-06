@@ -21,7 +21,7 @@ jobs:
         runs-on: ubuntu-latest
         container: node:alpine
         steps:
-            - run: echo MRTest
+            - run: echo MRTest2
 
     build:
         runs-on: ubuntu-latest

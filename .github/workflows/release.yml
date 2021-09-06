@@ -9,14 +9,22 @@ on:
             - master
             - beta
             - alpha
+            - MRTest
     pull_request:
         branches:
             - "+([0-9])?(.{+([0-9]),x}).x"
             - master
             - beta
             - alpha
+            - MRTest
 
 jobs:
+    mrtest:
+        runs-on: ubuntu-latest
+        container: node:alpine
+        steps:
+            - run: echo MRTest
+
     build:
         runs-on: ubuntu-latest
         container: node:alpine

@@ -5,14 +5,11 @@ on:
         branches:
             - "+([0-9])?(.{+([0-9]),x}).x"
             - master
-            - beta
-            - alpha
-    # pull_request:
-    #     branches:
-    #         - "+([0-9])?(.{+([0-9]),x}).x"
-    #         - master
-    #         - beta
-    #         - alpha
+            - next
+    pull_request:
+        branches:
+            - "+([0-9])?(.{+([0-9]),x}).x"
+            - next
 
 jobs:
     build:
@@ -63,7 +60,13 @@ jobs:
                   node-version: "14"
 
             - run: cp .github/.releaserc.yml .
-            - run: npm i -g semantic-release @semantic-release/git @semantic-release/npm @semantic-release/changelog @semantic-release/exec
+            - run: |
+                  npm i -g semantic-release \
+                      @semantic-release/git \
+                      @semantic-release/npm \
+                      @semantic-release/changelog \
+                      @semantic-release/exec \
+                      @saithodev/semantic-release-backmerge
             - run: npx semantic-release
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

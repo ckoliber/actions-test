@@ -1,3 +1,10 @@
+# [1.0.0-beta.2](https://github.com/ckoliber/actions-test/compare/1.0.0-beta.1...1.0.0-beta.2) (2021-09-07)
+
+
+### Bug Fixes
+
+* CI ([56a2387](https://github.com/ckoliber/actions-test/commit/56a238716a4f81a54533ed14b8e196b6cdeba48b))
+
 # 1.0.0-beta.1 (2021-09-07)
 
 

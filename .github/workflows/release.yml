@@ -63,7 +63,7 @@ jobs:
                   node-version: "14"
 
             - run: cp .github/.releaserc.yml .
-            - run: npm i -g semantic-release @semantic-release/git @semantic-release/npm @semantic-release/changelog
+            - run: npm i -g semantic-release @semantic-release/git @semantic-release/npm @semantic-release/changelog @semantic-release/exec
             - run: npx semantic-release
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

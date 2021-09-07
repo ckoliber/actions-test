@@ -1,3 +1,10 @@
+# [1.2.0-next.2](https://github.com/ckoliber/actions-test/compare/1.2.0-next.1...1.2.0-next.2) (2021-09-07)
+
+
+### Features
+
+* add feat ([8846e9b](https://github.com/ckoliber/actions-test/commit/8846e9b0f05d4bc8118e3bde24a5052fc475a326))
+
 # [1.2.0-next.1](https://github.com/ckoliber/actions-test/compare/1.1.1-next.1...1.2.0-next.1) (2021-09-07)
 
 

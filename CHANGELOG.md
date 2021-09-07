@@ -1,3 +1,10 @@
+# [1.2.0-next.3](https://github.com/ckoliber/actions-test/compare/1.2.0-next.2...1.2.0-next.3) (2021-09-07)
+
+
+### Bug Fixes
+
+* add fixxxxx ([4107a7c](https://github.com/ckoliber/actions-test/commit/4107a7c5751466a820a0ae70b22841644a5c3c3b))
+
 # [1.2.0-next.2](https://github.com/ckoliber/actions-test/compare/1.2.0-next.1...1.2.0-next.2) (2021-09-07)
 
 

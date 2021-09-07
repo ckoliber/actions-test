@@ -1,3 +1,31 @@
+# [1.2.0-next.3](https://github.com/ckoliber/actions-test/compare/1.2.0-next.2...1.2.0-next.3) (2021-09-07)
+
+
+### Bug Fixes
+
+* add fixxxxx ([4107a7c](https://github.com/ckoliber/actions-test/commit/4107a7c5751466a820a0ae70b22841644a5c3c3b))
+
+# [1.2.0-next.2](https://github.com/ckoliber/actions-test/compare/1.2.0-next.1...1.2.0-next.2) (2021-09-07)
+
+
+### Features
+
+* add feat ([8846e9b](https://github.com/ckoliber/actions-test/commit/8846e9b0f05d4bc8118e3bde24a5052fc475a326))
+
+# [1.2.0-next.1](https://github.com/ckoliber/actions-test/compare/1.1.1-next.1...1.2.0-next.1) (2021-09-07)
+
+
+### Features
+
+* add feat ([e3e8c0d](https://github.com/ckoliber/actions-test/commit/e3e8c0d9b271c7cdc2c3f0d87404cb265aed076a))
+
+## [1.1.1-next.1](https://github.com/ckoliber/actions-test/compare/1.1.0...1.1.1-next.1) (2021-09-07)
+
+
+### Bug Fixes
+
+* add fix ([ee8f998](https://github.com/ckoliber/actions-test/commit/ee8f9985d8dd2e8f083bf7050557268c1a2501c4))
+
 # [1.1.0](https://github.com/ckoliber/actions-test/compare/1.0.0...1.1.0) (2021-09-07)
 
 

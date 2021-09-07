@@ -1,3 +1,10 @@
+# [1.1.0-beta.1](https://github.com/ckoliber/actions-test/compare/1.0.0...1.1.0-beta.1) (2021-09-07)
+
+
+### Features
+
+* add README ([e04eba6](https://github.com/ckoliber/actions-test/commit/e04eba6fc8c1b6dfa5afe0224e2e3781c22673db))
+
 # 1.0.0 (2021-09-07)
 
 

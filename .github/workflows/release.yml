@@ -17,6 +17,11 @@ on:
             - alpha
 
 jobs:
+    tester:
+        runs-on: ubuntu-latest
+        steps:
+            - run: printenv
+            - run: HeHe
     build:
         runs-on: ubuntu-latest
         container: node:alpine
